@@ -76,4 +76,35 @@ with st.form("patient_form"):
     )
 
     if submit:
-        st.success("Patient information submitted!")
+       
+if submit:
+
+    # Create input DataFrame
+    input_data = pd.DataFrame([{
+        "Age": Age,
+        "Sex": Sex,
+        "ChestPainType": ChestPainType,
+        "RestingBP": RestingBP,
+        "Cholesterol": Cholesterol,
+        "FastingBS": FastingBS,
+        "RestingECG": RestingECG,
+        "MaxHR": MaxHR,
+        "ExerciseAngina": ExerciseAngina,
+        "Oldpeak": Oldpeak,
+        "ST_Slope": ST_Slope
+    }])
+
+    # Make prediction
+    prediction = model.predict(input_data)
+
+    st.subheader("Prediction Result")
+
+    if prediction[0] == 1:
+        st.error("Heart Disease: Positive")
+    else:
+        st.success("Heart Disease: Negative")
+
+    st.caption(
+        "This is an ML model prediction, not a medical diagnosis."
+    )
+
