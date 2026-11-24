@@ -94,17 +94,36 @@ if submit:
         "ST_Slope": ST_Slope
     }])
 
-    # Make prediction
-    prediction = model.predict(input_data)
+  
+    # Prediction result
+    prediction = model.predict(input_data)[0]
 
-    st.subheader("Prediction Result")
+    st.divider()
+    st.subheader("Heart Health Assessment")
 
-    if prediction[0] == 1:
-        st.error("Heart Disease: Positive")
+    if prediction == 1:
+
+        st.error(
+            "Heart Disease Prediction: Positive"
+        )
+
+        st.write(
+            "The model predicts a positive heart disease result."
+        )
+
     else:
-        st.success("Heart Disease: Negative")
 
-    st.caption(
-        "This is an ML model prediction, not a medical diagnosis."
+        st.success(
+            "Heart Disease Prediction: Negative"
+        )
+
+        st.write(
+            "The model predicts a negative heart disease result."
+        )
+
+    st.warning(
+        "This AI application is for educational purposes only. "
+        "It cannot diagnose or rule out heart disease. "
+        "Consult a qualified healthcare professional."
     )
 
