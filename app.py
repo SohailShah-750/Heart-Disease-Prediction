@@ -77,7 +77,7 @@ with st.form("patient_form"):
 
     if submit:
        
-if submit:
+
 
     # Create input DataFrame
     input_data = pd.DataFrame([{
