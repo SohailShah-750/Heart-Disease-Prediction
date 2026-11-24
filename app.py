@@ -75,9 +75,8 @@ with st.form("patient_form"):
         use_container_width=True
     )
 
-    if submit:
-       
 
+if submit:
 
     # Create input DataFrame
     input_data = pd.DataFrame([{
@@ -93,6 +92,22 @@ with st.form("patient_form"):
         "Oldpeak": Oldpeak,
         "ST_Slope": ST_Slope
     }])
+
+    # SVM Prediction
+    prediction = model.predict(input_data)[0]
+
+    st.divider()
+    st.subheader("Heart Health Assessment")
+
+    if prediction == 1:
+        st.error("Heart Disease Prediction: Positive")
+    else:
+        st.success("Heart Disease Prediction: Negative")
+
+    st.warning(
+        "This AI application is for educational purposes only. "
+        "It is not a medical diagnosis."
+    )
 
   
     # Prediction result
